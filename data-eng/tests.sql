@@ -4,7 +4,7 @@ use schema public;
 
 select util_db.public.grader(step, (actual = expected), actual, expected, description) as graded_results from (SELECT
  'BWDE3' as step
- ,( select count(*) from util_db.information_schema.stages 
+ ,( select count(*) from hol_db.information_schema.stages 
    where stage_name = 'FROSTBYTE_RAW_STAGE') as actual
  , 1 as expected
  ,'HOL_DB and FROSTBYTE_RAW_STAGE SUCCESSFULLY CREATED!' as description
@@ -20,14 +20,14 @@ select util_db.public.grader(step, (actual = expected), actual, expected, descri
 
 select util_db.public.grader(step, (actual = expected), actual, expected, description) as graded_results from (SELECT
  'BWDE5' as step
- ,( select count(*) from util_db.information_schema.tables where table_name in ('LOCATION', 'ORDER_DETAIL')) as actual
+ ,( select count(*) from hol_db.information_schema.tables where table_name in ('LOCATION', 'ORDER_DETAIL')) as actual
  , 2 as expected
  ,'LOCATION AND ORDER_DETAIL tables successfully created.' as description
 );
 
 select util_db.public.grader(step, (actual = expected), actual, expected, description) as graded_results from (SELECT
  'BWDE6' as step
- ,( select count(*) from util_db.information_schema.procedures
+ ,( select count(*) from hol_db.information_schema.procedures
    where procedure_name = 'LOAD_DAILY_CITY_METRICS_SP') as actual
  , 1 as expected
  ,'LOAD_DAILY_CITY_METRICS_SP stored procedure successfully created.' as description
@@ -35,7 +35,7 @@ select util_db.public.grader(step, (actual = expected), actual, expected, descri
 
 select util_db.public.grader(step, (actual = expected), actual, expected, description) as graded_results from (SELECT
  'BWDE7' as step
- ,( select count(*) from util_db.information_schema.object_privileges where object_name ilike '%HOL_DAG%') as actual
+ ,( select count(*) from hol_db.information_schema.object_privileges where object_name ilike '%HOL_DAG%') as actual
  , 4 as expected
  ,'DAG and tasks successfully created.' as description
 );
